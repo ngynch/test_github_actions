@@ -1,0 +1,16 @@
+name: publish workflow
+on:
+  # Allows you to run this workflow manually from the Actions tab.
+  workflow_dispatch:
+    inputs:
+      versionType:
+        description: 'Release Type - major, minor, or fix'
+        required: true
+        default: 'fix'
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Echo test
+        run: |
+          echo "publish"
