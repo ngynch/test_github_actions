@@ -4,13 +4,23 @@ on:
   workflow_dispatch:
     inputs:
       versionType:
-        description: 'Release Type - major, minor, or fix'
+        description: 'Release Type - major, minor, or patch'
         required: true
-        default: 'fix'
+        default: 'patch'
 jobs:
   publish:
     runs-on: ubuntu-latest
     steps:
+            - name: Verify version type input
+        run: |
+          echo "Input version type: ${{ github.event.inputs.versionType }}"
+          if [[ "${{ github.event.inputs.versionType }}" =~ ^(major|minor|patch)$ ]]; then
+            echo "Valid version type: ${{ github.event.inputs.versionType }}"
+          else
+            echo "Error: Invalid version type '${{ github.event.inputs.versionType }}'. Must be one of: major, minor, patch."
+            exit 1
+          fi
       - name: Echo test
         run: |
           echo "publish"
+          echo 
