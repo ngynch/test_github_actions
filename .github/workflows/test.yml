@@ -11,16 +11,15 @@ jobs:
   publish:
     runs-on: ubuntu-latest
     steps:
-            - name: Verify version type input
-        run: |
-          echo "Input version type: ${{ github.event.inputs.versionType }}"
-          if [[ "${{ github.event.inputs.versionType }}" =~ ^(major|minor|patch)$ ]]; then
-            echo "Valid version type: ${{ github.event.inputs.versionType }}"
-          else
-            echo "Error: Invalid version type '${{ github.event.inputs.versionType }}'. Must be one of: major, minor, patch."
+       - name: Verify version type input
+         run: |
+           echo "Input version type: ${{ github.event.inputs.versionType }}"
+           if [[ "${{ github.event.inputs.versionType }}" =~ ^(major|minor|patch)$ ]]; then
+              echo "Valid version type: ${{ github.event.inputs.versionType }}"
+            else
+              echo "Error: Invalid version type '${{ github.event.inputs.versionType }}'. Must be one of: major, minor, patch."
             exit 1
           fi
       - name: Echo test
         run: |
-          echo "publish"
-          echo 
+          echo "publish" 
