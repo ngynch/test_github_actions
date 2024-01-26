@@ -3,10 +3,15 @@ on:
   # Allows you to run this workflow manually from the Actions tab.
   workflow_dispatch:
     inputs:
-      versionType:
+      choice:
+        type: choice
         description: 'Release Type - major, minor, or patch'
         required: true
         default: 'patch'
+        options:
+          - major
+          - minor
+          - patch
 jobs:
   publish:
     runs-on: ubuntu-latest
